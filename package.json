@@ -2,16 +2,32 @@
   "name": "learn-starter",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "seeder": "node utils/seeder"
   },
   "dependencies": {
+    "dotenv": "^10.0.0",
     "mongoose": "^5.13.5",
     "next": "^11.0.0",
     "next-connect": "^0.10.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
-  }
+  },
+  "description": "Luxury Hotel application by Azizul Hakim Tareq",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AzizulTareq/luxury-hotel-next.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AzizulTareq/luxury-hotel-next.js/issues"
+  },
+  "homepage": "https://github.com/AzizulTareq/luxury-hotel-next.js#readme"
 }

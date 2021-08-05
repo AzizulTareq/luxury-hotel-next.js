@@ -86,19 +86,19 @@ const roomSchema = new mongoose.Schema({
             user: {
                 type: mongoose.Schema.ObjectId,
                 ref: 'User',
-                required: true
+                required: false
             },
             name: {
                 type: String,
-                required: true
+                required: false
             },
             rating: {
                 type: Number,
-                required: true
+                required: false
             },
             comment: {
                 type: String,
-                required: true
+                required: false
             }
         }
     ],
@@ -114,4 +114,4 @@ const roomSchema = new mongoose.Schema({
 
 })
 
-export default mongoose.model.Room || mongoose.model('Room', roomSchema);
+module.exports = mongoose.models.Room || mongoose.model('Room', roomSchema);
