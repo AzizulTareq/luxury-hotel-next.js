@@ -1,42 +1,28 @@
 import Room from '../models/room.js'
 import ErrorHandler from '../utils/errorHandler'
+import catchAsyncErrors from '../middlewares/catchAsyncErrors.js';
 
 // create a room 
-const newRoom = async (req, res) => {
-    try {
+const newRoom = catchAsyncErrors(async (req, res) => {
         const room = await Room.create(req.body);
         res.status(200).json({
             success: true,
             room
         })
-    } catch (error) {
-        res.status (400).json({
-            success: false,
-            error: error.message
-        })
-    }
-}
+})
 
 //get all rooms
-const allRooms = async(req, res) => {
-    try {
+const allRooms = catchAsyncErrors(async(req, res) => {
         const rooms = await Room.find({})
         res.status(200).json({
             success: true,
             count : rooms.length,
             rooms
         })
-    } catch (err){
-        res.status(400).json({
-            success: false,
-            error: err.message
-        })
-    }
-}
+})
 
 //get a single room
-const getSingleRoom = async(req, res, next) => {
-    try {
+const getSingleRoom = catchAsyncErrors(async(req, res, next) => {
         const room = await Room.findById(req.query.id)
 
         if(!room){
@@ -47,17 +33,11 @@ const getSingleRoom = async(req, res, next) => {
             success: true,
             room
         })
-    } catch (err){
-        res.status(400).json({
-            success: false,
-            error: err.message
-        })
-    }
-}
+})
 
 // update a room
-const updataRoom = async (req, res) => {
-    try {
+const updataRoom = catchAsyncErrors(async (req, res) => {
+
         let room = await Room.findByIdAndUpdate(req.query.id, req.body, {
             new: true,
             runValidators: true,
@@ -72,16 +52,10 @@ const updataRoom = async (req, res) => {
             success: true,
             room
         })
-    } catch (error) {
-        res.status(400).json({
-            error: error.message
-        })
-    }
-}
+})
 
 // delete a room by id
-const deleteRoom = async(req, res) => {
-    try {
+const deleteRoom = catchAsyncErrors(async(req, res) => {
         const room = await Room.findById(req.query.id);
         if(!room) {
             return next(new ErrorHandler('Room not found with is id', 404))
@@ -93,14 +67,7 @@ const deleteRoom = async(req, res) => {
             success: true,
             message: 'Room is deleted'
         })
-
-    } catch (error) {
-        res.status(400).json({
-            error: error.message
-        })
-    }
-
-}
+})
 
 export {
     allRooms,
